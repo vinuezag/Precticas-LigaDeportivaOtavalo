@@ -1,0 +1,9 @@
+Controlador\ControladorPersonas.class
+Modelo\Disiplinas.class
+Modelo\Conexion.class
+Modelo\Entrenadores.class
+Controlador\ControladorDisiplinas.class
+Controlador\ControladorDeportistas.class
+Modelo\Deportistas.class
+com\mycompany\ldco\LDCO.class
+Modelo\Personas.class
