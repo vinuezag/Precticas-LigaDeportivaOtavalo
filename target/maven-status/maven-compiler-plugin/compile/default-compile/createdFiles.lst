@@ -1,9 +1,6 @@
-Controlador\ControladorPersonas.class
-Modelo\Disiplinas.class
-Modelo\Conexion.class
-Modelo\Entrenadores.class
-Controlador\ControladorDisiplinas.class
-Controlador\ControladorDeportistas.class
-Modelo\Deportistas.class
-com\mycompany\ldco\LDCO.class
-Modelo\Personas.class
+Vista\Inicio.class
+Vista\Inicio$1.class
+Vista\Inicio$3.class
+Vista\Inicio$2.class
+Vista\InformeDeportista.class
+Vista\Inicio$4.class

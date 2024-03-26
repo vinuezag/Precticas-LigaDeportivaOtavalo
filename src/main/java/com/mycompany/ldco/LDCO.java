@@ -4,6 +4,9 @@
 
 package com.mycompany.ldco;
 
+import Vista.Inicio;
+
+
 /**
  *
  * @author USUARIO
@@ -11,6 +14,9 @@ package com.mycompany.ldco;
 public class LDCO {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+       
+       Inicio ventanaP = new Inicio();
+        ventanaP.setVisible(true);
+        ventanaP.setLocationRelativeTo(null);
     }
 }

@@ -4,7 +4,9 @@
  */
 package Modelo;
 
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /*
     Table: personas
@@ -82,8 +84,10 @@ public class Personas {
         return fechaNacimiento;
     }
 
+    
+    
     public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+                this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getGenero() {

@@ -1,22 +1,47 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package Vista;
+
+import Controlador.ConsultasDeportista;
+import Controlador.ConsultasDisciplinas;
+import Modelo.Deportistas;
+import Modelo.Personas;
+import java.text.ParseException;
+import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author USUARIO
  */
-public class RegistrarDeportista extends javax.swing.JFrame {
+public class RegistrarDeportista extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form RegistrarDeportista
      */
     public RegistrarDeportista() {
         initComponents();
+        cargarDisciplinas();
     }
-
+    
+    private void cargarDisciplinas() {
+        ConsultasDisciplinas consultasDisciplinas = new ConsultasDisciplinas();
+        List<String> disciplinas = consultasDisciplinas.consultarDisciplinas();
+        
+        listDeportes.removeAllItems();
+        
+        listDeportes.addItem("Elegir una opción");
+        
+        for (String disciplina : disciplinas) {
+            listDeportes.addItem(disciplina);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,191 +51,223 @@ public class RegistrarDeportista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Cedula = new javax.swing.JLabel();
-        Deporte = new javax.swing.JLabel();
-        Nombres = new javax.swing.JLabel();
-        Apellidos = new javax.swing.JLabel();
-        FechaNacimiento = new javax.swing.JLabel();
-        Genero = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         txtCedula = new javax.swing.JTextField();
+        listDeportes = new javax.swing.JComboBox<>();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
-        txtFechaNacimiento = new javax.swing.JTextField();
-        listDeportes = new javax.swing.JComboBox<>();
+        jdcFecha = new com.toedter.calendar.JDateChooser();
         listGenero = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setAutoscrolls(true);
 
-        Cedula.setText("Cedula");
+        jPanel1.setBackground(new java.awt.Color(234, 241, 255));
 
-        Deporte.setText("Deporte");
+        listDeportes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir una opción", "Ajedrez", "Basketball", "Boxeo", "Futbol", "Gimnasia", "Karate", "Natación", "Patinaje", "Taekwondo", "Tenis", " " }));
 
-        Nombres.setText("Nombres");
+        jdcFecha.setDateFormatString("yyyy-MM-dd");
 
-        Apellidos.setText("Apellidos");
+        listGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir una Opción", "Masculino", "Femenino" }));
 
-        FechaNacimiento.setText("Fecha de Nacimiento");
-
-        Genero.setText("Genero");
-
-        txtFechaNacimiento.setText("AAAA-MM-DD");
-
-        listDeportes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fútbol", "Basketball", "Tenis", "Patinaje", "Karate", "Taekwondo", "Ajedrez", "Gimnasia", "Boxeo", "Natación" }));
-        listDeportes.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setBackground(new java.awt.Color(52, 168, 83));
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listDeportesActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
-        listGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Maculino" }));
-
-        btnGuardar.setText("Guardar");
-
-        btnModificar.setText("Modificar");
-
-        btnEliminar.setText("Eliminar");
-
+        btnLimpiar.setBackground(new java.awt.Color(67, 133, 243));
+        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
-        btnBuscar.setText("Buscar");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\Practicas-LigaDeportivaOtavalo\\LDCO\\src\\main\\resource\\Imagenes\\TituloRegistrar.png")); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Nombres");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Numero de Cedula");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("Apellidos");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Fecha de Nacimiento");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Genero");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setText("Disciplina Deportiva");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(111, 111, 111)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtCedula)
+                                .addComponent(listDeportes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtNombres)
+                                .addComponent(txtApellidos)
+                                .addComponent(jdcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(listGenero, 0, 198, Short.MAX_VALUE))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardar)
+                            .addComponent(btnLimpiar))
+                        .addGap(61, 61, 61))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(listDeportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGuardar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(146, 146, 146)
+                                .addComponent(btnLimpiar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(listGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Cedula)
-                            .addComponent(Deporte)
-                            .addComponent(Nombres)
-                            .addComponent(Apellidos)
-                            .addComponent(FechaNacimiento)
-                            .addComponent(Genero))
-                        .addGap(107, 107, 107)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtCedula)
-                            .addComponent(listDeportes, 0, 143, Short.MAX_VALUE)
-                            .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(listGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(50, 50, 50)
-                        .addComponent(btnBuscar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(btnGuardar)
-                        .addGap(51, 51, 51)
-                        .addComponent(btnModificar)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnEliminar)
-                        .addGap(55, 55, 55)
-                        .addComponent(btnLimpiar)))
-                .addContainerGap(143, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cedula)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Deporte)
-                    .addComponent(listDeportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Nombres)
-                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Apellidos)
-                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FechaNacimiento)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Genero)
-                    .addComponent(listGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnModificar)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnLimpiar))
-                .addGap(29, 29, 29))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listDeportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listDeportesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listDeportesActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+       ConsultasDeportista consultasDeportista = new ConsultasDeportista();
+    Personas persona = new Personas();
+    
+    // Establecer los datos del deportista
+    persona.setCedula(txtCedula.getText());
+    persona.setDeporte(listDeportes.getSelectedItem().toString());
+    persona.setNombres(txtNombres.getText());
+    persona.setApellidos(txtApellidos.getText());
+    
+    // Formatear la fecha antes de establecerla
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String fechaFormateada = sdf.format(jdcFecha.getDate());
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarDeportista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarDeportista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarDeportista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarDeportista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            persona.setFechaNacimiento(sdf.parse(fechaFormateada));
+        } catch (ParseException ex) {
+            Logger.getLogger(RegistrarDeportista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarDeportista().setVisible(true);
-            }
-        });
+    
+    persona.setGenero(listGenero.getSelectedItem().toString());
+    persona.setCargo("Deportista");
+    
+    // Llamar al método registrar
+    if (consultasDeportista.registrar(persona)) {
+        JOptionPane.showMessageDialog(null, "Deportista registrado correctamente");
+    } else {
+        JOptionPane.showMessageDialog(null, "Error al registrar el deportista");
     }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtCedula.setText("");
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        jdcFecha.setDate(null);
+        listDeportes.setSelectedIndex(0); 
+        listGenero.setSelectedIndex(0); 
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Apellidos;
-    private javax.swing.JLabel Cedula;
-    private javax.swing.JLabel Deporte;
-    private javax.swing.JLabel FechaNacimiento;
-    private javax.swing.JLabel Genero;
-    private javax.swing.JLabel Nombres;
-    public javax.swing.JButton btnBuscar;
-    public javax.swing.JButton btnEliminar;
-    public javax.swing.JButton btnGuardar;
-    public javax.swing.JButton btnLimpiar;
-    public javax.swing.JButton btnModificar;
-    public javax.swing.JComboBox<String> listDeportes;
-    public javax.swing.JComboBox<String> listGenero;
-    public javax.swing.JTextField txtApellidos;
-    public javax.swing.JTextField txtCedula;
-    public javax.swing.JTextField txtFechaNacimiento;
-    public javax.swing.JTextField txtNombres;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private com.toedter.calendar.JDateChooser jdcFecha;
+    private javax.swing.JComboBox<String> listDeportes;
+    private javax.swing.JComboBox<String> listGenero;
+    private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtNombres;
     // End of variables declaration//GEN-END:variables
 }
